@@ -1,6 +1,8 @@
-
-export default function Home() {
+import { ProductForm } from '../components/ProductForm'
+export default function HomePage() {
   return (
-    <div className="text-3xl font-bold">Hello World!</div>
+    <div>
+      <ProductForm />
+    </div>
   )
 }
