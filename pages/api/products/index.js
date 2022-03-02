@@ -12,6 +12,8 @@ export default async function Handler(req, res) {
         description,
         price
       })
-      return res.status(200).json({name, description, price, id: result.insertId})
+      return res
+        .status(200)
+        .json({name, price, description, id: result.insertId})
   }
 }

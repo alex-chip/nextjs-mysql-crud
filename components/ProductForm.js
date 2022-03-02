@@ -4,15 +4,15 @@ export function ProductForm () {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const result = await axios.post('/api/products', {
-      name: "p1",
-      description: 'p1',
+      name: "product1",
+      description: 'description1',
       price: 1000
     })
     console.log(result)
   }
 
   return (
-    <div>
+    <div className='bg-gray-300'>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" />
