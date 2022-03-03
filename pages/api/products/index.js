@@ -3,9 +3,14 @@ import { pool } from '../../../config/db'
 export default async function Handler(req, res) {
   switch(req.method) {
     case 'GET':
-      return res.status(200).json('getting a product')
+      return await getProducts(req, res)
     case 'POST':
-      const { name, description, price } = req.body
+      return await saveProduct(req, res)
+  }
+}
+
+const saveProduct = async (req, res) => {
+  const { name, description, price } = req.body
 
       const [result] = await pool.query('INSERT INTO product SET ?', {
         name,
@@ -15,5 +20,11 @@ export default async function Handler(req, res) {
       return res
         .status(200)
         .json({name, price, description, id: result.insertId})
-  }
+}
+
+const getProducts = async (req, res) => {
+  const [result] = await pool.query('SELECT name, price, description FROM product')
+  return res
+    .status(200)
+    .json(result)
 }
